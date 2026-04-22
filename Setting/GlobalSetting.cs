@@ -16,6 +16,6 @@ namespace MultiplayCore
         public AgentSettings Agent;
         public MapSettings Map;
         public NetworkSettings Network;
-        public OptionsData DefaultOptions;
+        public OptionData DefaultOptions;
     }
 }

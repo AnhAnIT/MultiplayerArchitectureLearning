@@ -17,7 +17,7 @@ namespace MultiplayCore
 
     public static class Global
     {
-        //Public Static menbers
+        //Public members
         public static GlobalSetting Settings { get; private set; }
 
         public static RuntimeSetting RuntimeSettings { get; private set;     }
