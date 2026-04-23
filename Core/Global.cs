@@ -1,10 +1,7 @@
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
-using UnityEngine.Rendering;
-using Fusion;
 using UnityEngine.PlayerLoop;
-using Unity.VisualScripting;
+
 
 namespace MultiplayCore
 {
@@ -18,9 +15,9 @@ namespace MultiplayCore
     public static class Global
     {
         //Public members
-        public static GlobalSetting Settings { get; private set; }
+        public static GlobalSettings Settings { get; private set; }
 
-        public static RuntimeSetting RuntimeSettings { get; private set;     }
+        public static RuntimeSettings RuntimeSettings { get; private set; }
 
         public static PlayerService PlayerService { get; private set; }
 
@@ -42,12 +39,12 @@ namespace MultiplayCore
      Application.Quit();
 #endif
 
-}
+        }
         //Private methods
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void InitializeSubSystem()
         {
-            if(Application.isBatchMode == true)
+            if (Application.isBatchMode == true)
             {
                 AudioListener.volume = 0f;
                 PlayerLoopUtility.RemovePlayerLoopSystems(typeof(PostLateUpdate.UpdateAudio));
@@ -69,7 +66,7 @@ namespace MultiplayCore
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void InitializeBeforeSceneLoad()
         {
-            Initialize();
-            if()
+
         }
     }
+}

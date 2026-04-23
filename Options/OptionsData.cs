@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 namespace MultiplayCore
 {
     [Serializable]
-    public sealed class OptionData
+    public sealed class OptionsData
     {
         //Public members 
         public List<OptionsValue> Values => _allValues;

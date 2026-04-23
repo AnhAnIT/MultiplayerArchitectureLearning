@@ -4,9 +4,9 @@ using Fusion;
 
 namespace MultiplayCore
 {
-    [SerializeField]
+    [Serializable]
     [CreateAssetMenu(fileName ="GlobalSetting",menuName = "MultiplayCore/Global Setting")]
-    public class GlobalSetting : ScriptableObject
+    public class GlobalSettings : ScriptableObject
     {
         public NetworkRunner RunnerPrefab;
         public string LoadingScene = "LoadingScene";
@@ -16,6 +16,6 @@ namespace MultiplayCore
         public AgentSettings Agent;
         public MapSettings Map;
         public NetworkSettings Network;
-        public OptionData DefaultOptions;
+        public OptionsData DefaultOptions;
     }
 }
