@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using MultiplayCore;
 
 namespace MultiplayCore.UI
 {
@@ -199,5 +200,44 @@ namespace MultiplayCore.UI
                 }
             }
         }
+
+        public bool PlaySound(AudioSetup effectSetup , EForceBehaviour force = EForceBehaviour.None)
+        {
+            return _audioEffects.PlaySound(effectSetup, force);
+        }
+
+        public bool PlayClickSound()
+        {
+            return PlaySound(_clickSound);
+        }
+
+        // IBackHadler interface 
+        int IBackHandler.Priority =>  1;
+        bool IBackHandler.IsActive => true;
+
+        bool IBackHandler.OnBackAction() { return OnBackAction(); }
+
+
+        //GameService interface
+        protected sealed override void OnInitialize()
+        {
+            base.OnInitialize();
+            Canvas = GetComponent<Canvas>();
+            UICamera = Canvas.worldCamera;
+            _views = GetComponentsInChildren<UIView>(true);
+
+            for (int i = 0; i < _views.Length; ++i)
+            {
+                UIView view = _views[i];
+
+                view.Initialize(this, null);
+                view.SetPriority(i);
+
+                view.gameObject.SetActive(false);
+            }
+
+        }
+
+
     }
 }

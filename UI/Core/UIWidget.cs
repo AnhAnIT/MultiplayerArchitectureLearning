@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace TPSBR.UI
+namespace MultiplayCore.UI
 {
     public abstract class UIWidget : UIBehaviour
     {

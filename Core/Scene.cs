@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
-using TPSBR.UI;
+using MultiplayCore.UI;
 using MultiplayCore;
 using System.IO;
 
@@ -68,7 +68,7 @@ namespace MultiplayCore
         public Matchmaker Matchmaker;
     }
 
-    public class Scene : CoreBehaviour
+    public class Scene : CoreBehavior
     {
         // PUBLIC MEMBERS
 

@@ -1,0 +1,33 @@
+namespace MultiplayCore
+{
+    public static class ByteExtensions
+    {
+        public static bool IsBitSet(this byte flags, int bit)
+        {
+            return (flags & (1 << bit)) != 0;
+        }
+        public static byte SetBit(ref this byte flags, int bit, bool value)
+        {
+            if (value == true)
+            {
+                return flags |= (byte)(1 << bit);
+            }
+            else
+            {
+                return flags &= unchecked((byte)~(1 << bit));
+            }
+        }
+
+        public static byte SetBitNoRef(this byte flags, int bit, bool value)
+        {
+            if (value == true)
+            {
+                return flags |= (byte)(1 << bit);
+            }
+            else
+            {
+                return flags &= unchecked((byte)~(1 << bit));
+            }
+        }
+    }
+}
