@@ -1,18 +1,44 @@
+using MultiplayCore;
 using UnityEngine;
+
 namespace MultiplayCore
 {
-    [CreateAssetMenu(menuName = "Announcements/Remaining Kills")]
+    [CreateAssetMenu(menuName = "MultiplayCore/Announcements/Remaining Kills")]
     public class RemainingKillsAnnouncement : Announcement
     {
+        // PRIVATE MEMBERS
+
         [SerializeField]
-        private int _skills;
+        private int _kills;
+
         private DeathmatchGameplayMode _deathmatch;
         private int _minScore;
-        // Announcement interface
-        public override void Active(AnnouncementrContext context) {
+
+        // Announcement INTERFACE
+
+        public override void Activate(AnnouncerContext context)
         {
             _deathmatch = context.GameplayMode as DeathmatchGameplayMode;
-            _minScore = _deathmatch.ScoreToWin - context.PlayerStatistics.Kills;
+
+            if (_deathmatch == null)
+            {
+                // We do not need this announcement in other gameplay modes
+                IsFinished = true;
+                return;
+            }
+
+            _minScore = _deathmatch.ScoreLimit - _deathmatch.ScorePerKill * _kills;
+
+            if (context.BestScore >= _minScore)
+            {
+                // Do not consider this announcement
+                IsFinished = true;
+            }
+        }
+
+        protected override bool CheckCondition(AnnouncerContext context)
+        {
+            return context.BestScore >= _minScore;
         }
     }
 }
